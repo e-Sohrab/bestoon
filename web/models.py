@@ -4,6 +4,12 @@ from django.db import models
 
 # Create your models here.
 
+class Token(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    token = models.CharField(max_length=48)
+    def __unicode__(self):
+        return "{}'s token".format(self.user)
+
 class Expense(models.Model):
     text = models.CharField(max_length=255)
     date = models.DateTimeField()
